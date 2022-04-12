@@ -1,0 +1,23 @@
+{
+  "name": "aoc2017day1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/corkesw/logic_blocks_aoc2017day1.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/corkesw/logic_blocks_aoc2017day1/issues"
+  },
+  "homepage": "https://github.com/corkesw/logic_blocks_aoc2017day1#readme",
+  "devDependencies": {
+    "jest": "^27.5.1"
+  }
+}
