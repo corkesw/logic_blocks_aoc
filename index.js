@@ -1,5 +1,5 @@
 const { number } = require("./data");
-
+//comment
 exports.captcha = (num) => {
   if (num < 10) return 0;
   let total = 0;
