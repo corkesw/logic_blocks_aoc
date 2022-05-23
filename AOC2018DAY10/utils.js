@@ -1,3 +1,15 @@
+exports.addMovements = (array, seconds) => {
+  const outputArray = array.map((element) => {
+    return {
+      positionX: element.positionX + element.speedX * seconds,
+      positionY: element.positionY + element.speedY * seconds,
+      speedX: element.speedX,
+      speedY: element.speedY,
+    };
+  });
+  return outputArray;
+};
+
 exports.zeroObjects = (array) => {
   let lowX = 0;
   let lowY = 0;
@@ -14,7 +26,6 @@ exports.zeroObjects = (array) => {
       speedY: element.speedY,
     };
   });
-
   return rebasedArray;
 };
 
@@ -25,7 +36,6 @@ exports.createStrings = (array) => {
     if (element.positionX > stringsLength)
       stringsLength = element.positionX + 1;
     if (element.positionY + 1 > arrayLength) {
-      console.log(element.postionY, "<<<)");
       arrayLength = element.positionY + 1;
     }
   });
@@ -35,7 +45,6 @@ exports.createStrings = (array) => {
   for (let i = 0; i < arrayLength; i++) {
     stringArray.push(string);
   }
-  console.log({ arrayLength });
   return stringArray;
 };
 
@@ -44,7 +53,6 @@ exports.plotStars = (strings, coords) => {
   coords.forEach((coord) => {
     starPosition = coord.positionX;
     starString = coord.positionY;
-    console.log(starPosition, starString);
     outputStrings[starString] = `${outputStrings[starString].slice(
       0,
       starPosition

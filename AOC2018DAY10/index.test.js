@@ -1,4 +1,79 @@
-const { zeroObjects, createStrings, plotStars } = require("./utils");
+const {
+  addMovements,
+  zeroObjects,
+  createStrings,
+  plotStars,
+} = require("./utils");
+
+describe("addMovements", () => {
+  test("should change a single object in array when passed a single second increment", () => {
+    const input = [
+      {
+        positionX: 1,
+        positionY: 2,
+        speedX: 1,
+        speedY: 2,
+      },
+    ];
+    const actual = addMovements(input, 1);
+    const expected = [
+      {
+        positionX: 2,
+        positionY: 4,
+        speedX: 1,
+        speedY: 2,
+      },
+    ];
+    expect(actual).toEqual(expected);
+  });
+  test("should change a single object in an array when passed a bigger increment", () => {
+    const input = [
+      {
+        positionX: 1,
+        positionY: 2,
+        speedX: 1,
+        speedY: 2,
+      },
+    ];
+    const actual = addMovements(input, 5);
+    const expected = [
+      {
+        positionX: 6,
+        positionY: 12,
+        speedX: 1,
+        speedY: 2,
+      },
+    ];
+    expect(actual).toEqual(expected);
+  });
+  test("should change a several objects with given increment", () => {
+    const input = [
+      {
+        positionX: 1,
+        positionY: 2,
+        speedX: 1,
+        speedY: 2,
+      },
+      {
+        positionX: 10,
+        positionY: -2,
+        speedX: 1,
+        speedY: 2,
+      },
+    ];
+    const actual = addMovements(input, 3);
+    const expected = [
+      { positionX: 4, positionY: 8, speedX: 1, speedY: 2 },
+      {
+        positionX: 13,
+        positionY: 4,
+        speedX: 1,
+        speedY: 2,
+      },
+    ];
+    expect(actual).toEqual(expected);
+  });
+});
 
 describe("zeroObjects", () => {
   test("when passed an array of one object with only positive coords, returns an identical object", () => {
@@ -205,53 +280,59 @@ describe("createStrings", () => {
   });
 });
 
-describe('plotStars', () => {
-    test('should return a single # when passed coords of 0,0', () => {
-        const strings = ['.']
-        const coords = [{
-            positionX: 0,
-            positionY: 0,
-            speedX: 1,
-            speedY: 2,
-          },]
-        const actual = plotStars(strings, coords)
-        const expected =["#"]
-        expect(actual).toEqual(expected)
-    });
-    test('should return correct placed #s when passed coords which have differing z coords but only 0 y coords', () => {
-        const strings = ['....']
-        const coords = [{
-            positionX: 0,
-            positionY: 0,
-            speedX: 1,
-            speedY: 2,
-          },
-          {
-            positionX: 3,
-            positionY: 0,
-            speedX: 1,
-            speedY: 2,
-          }]
-        const actual = plotStars(strings, coords)
-        const expected =["#..#"]
-        expect(actual).toEqual(expected)
-    });
-    test('should return correct placed #s when passed coords which have differing z coords and differing y coords', () => {
-        const strings = ['....', '....', '....']
-        const coords = [{
-            positionX: 0,
-            positionY: 2,
-            speedX: 1,
-            speedY: 2,
-          },
-          {
-            positionX: 3,
-            positionY: 0,
-            speedX: 1,
-            speedY: 2,
-          }]
-        const actual = plotStars(strings, coords)
-        const expected =['...#', '....', '#...']
-        expect(actual).toEqual(expected)
-    });
+describe("plotStars", () => {
+  test("should return a single # when passed coords of 0,0", () => {
+    const strings = ["."];
+    const coords = [
+      {
+        positionX: 0,
+        positionY: 0,
+        speedX: 1,
+        speedY: 2,
+      },
+    ];
+    const actual = plotStars(strings, coords);
+    const expected = ["#"];
+    expect(actual).toEqual(expected);
+  });
+  test("should return correct placed #s when passed coords which have differing z coords but only 0 y coords", () => {
+    const strings = ["...."];
+    const coords = [
+      {
+        positionX: 0,
+        positionY: 0,
+        speedX: 1,
+        speedY: 2,
+      },
+      {
+        positionX: 3,
+        positionY: 0,
+        speedX: 1,
+        speedY: 2,
+      },
+    ];
+    const actual = plotStars(strings, coords);
+    const expected = ["#..#"];
+    expect(actual).toEqual(expected);
+  });
+  test("should return correct placed #s when passed coords which have differing z coords and differing y coords", () => {
+    const strings = ["....", "....", "...."];
+    const coords = [
+      {
+        positionX: 0,
+        positionY: 2,
+        speedX: 1,
+        speedY: 2,
+      },
+      {
+        positionX: 3,
+        positionY: 0,
+        speedX: 1,
+        speedY: 2,
+      },
+    ];
+    const actual = plotStars(strings, coords);
+    const expected = ["...#", "....", "#..."];
+    expect(actual).toEqual(expected);
+  });
 });

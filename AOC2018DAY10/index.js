@@ -1,11 +1,18 @@
-const data = require("./test-data");
-const { zeroObjects, createStrings, plotStars } = require("./utils");
+const data = require("./data");
+const {
+  zeroObjects,
+  createStrings,
+  plotStars,
+  addMovements,
+} = require("./utils");
 
-const zeroedObjects = zeroObjects(data);
+const getPattern = (array, seconds) => {
+  const movedStars = addMovements(array, seconds);
 
-console.log(zeroedObjects);
-const stringsArray = createStrings(zeroedObjects);
-console.log(stringsArray.length)
-const starPlot = plotStars(stringsArray, zeroedObjects);
+  const zeroedObjects = zeroObjects(movedStars);
+  const stringsArray = createStrings(zeroedObjects);
+  const starPlot = plotStars(stringsArray, zeroedObjects);
+  console.dir(starPlot, { maxArrayLength: null });
+};
 
-console.log(starPlot);
+getPattern(data, 10511);
