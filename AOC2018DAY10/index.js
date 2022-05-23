@@ -8,7 +8,6 @@ const {
 
 const getPattern = (array, seconds) => {
   const movedStars = addMovements(array, seconds);
-
   const zeroedObjects = zeroObjects(movedStars);
   const stringsArray = createStrings(zeroedObjects);
   const starPlot = plotStars(stringsArray, zeroedObjects);
